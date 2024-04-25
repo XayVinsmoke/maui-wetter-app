@@ -3,13 +3,23 @@
     x:Class="MauiWetterApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MauiWetterApp"
+    xmlns:i18n="clr-namespace:MauiWetterApp.Resources.Localization"
+    xmlns:views="clr-namespace:MauiWetterApp.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="MauiWetterApp">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="{Static i18n:AppResources.Lable_Today_Weather}">
+            <ShellContent
+                Title="{Static i18n:AppResources.Lable_Today_Weather}"
+                ContentTemplate="{DataTemplate views:TodayWeatherPage}"
+                Route="TodayWeatherPage"/>
+        </Tab>
+        <Tab Title="{Static i18n:AppResources.Lable_Settings}">
+        <ShellContent
+                 Title="{Static i18n:AppResources.Lable_Settings}"
+                 ContentTemplate="{DataTemplate views:SettingsPage}"
+                 Route="SettingsPage"/>
+        </Tab>
+    </TabBar>
 
 </Shell>
