@@ -21,7 +21,7 @@
     </StackLayout>-->
 
     <Grid 
-            RowDefinitions="0.5*,1.*,*"
+            RowDefinitions="0.5*,1*,*"
             ColumnDefinitions="*,*">
 
         <Label
@@ -35,7 +35,7 @@
         <Image 
             Grid.Row="0"
             Grid.Column="1"
-            Source="raindark.png"/>
+            Source="windy.png"/>
         <CollectionView            
             Grid.Row="1"
             Grid.ColumnSpan="2"
@@ -57,11 +57,28 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-            <Label
-                Grid.Row="2"
-                Grid.ColumnSpan="2"
-                BackgroundColor="DarkViolet"/>
-        </Grid>
+        <CollectionView            
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            BackgroundColor="DarkViolet" 
+            ItemsSource="{Binding WeeklyForecasts}">   
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="20"></LinearItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Weather">
+                    <StackLayout>
+                        <Image Source="{Binding WeatherImage}"
+                       WidthRequest="80"
+                       HeightRequest="130"/>
+                        <Label Text="{Binding DateTime, StringFormat='{0:dddd}'}" FontFamily="Cour" FontSize="20" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Condition}" FontFamily="Cour" FontSize="20" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Temperature, StringFormat='{0:} °'}" FontFamily="Cour" FontSize="30" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
     
 
 

@@ -8,7 +8,9 @@ internal class TodayWeatherViewModel : NotifyBase
 {
     public ObservableCollection<Weather> Weathers { get; } = new ObservableCollection<Weather>();
 
-    public TodayWeatherViewModel() 
+    public ObservableCollection<Weather> WeeklyForecasts { get; } = new ObservableCollection<Weather>();
+
+    public TodayWeatherViewModel()
     {
         Random random = new Random();
         DateTime startDateTime = DateTime.Now;
@@ -22,8 +24,16 @@ internal class TodayWeatherViewModel : NotifyBase
             Weathers.Add(weatherTemp);
 
         }
-      
+
+        for (int i = 0;i <= 7; i++)
+        {
+            Weather weeklyTemp = new Weather();
+            weeklyTemp.Temperature = random.Next(-10, 45);
+            weeklyTemp.DateTime = startDateTime.AddDays(i);
+
+            WeeklyForecasts.Add(weeklyTemp);
+        }
     }
 
-   
+
 }
