@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<ContentPage
     x:Class="MauiWetterApp.Views.TodayWeatherPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -21,25 +21,78 @@
     </StackLayout>-->
 
     <Grid 
-            RowDefinitions="0.5*,1*,*"
+            RowDefinitions="0.5*,0.2*,1*,0.2*,1*"
             ColumnDefinitions="*,*">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Offset="0.1" Color="DarkCyan" />
+                    <GradientStop Offset="1.0" Color="DarkOrange" />
+                </LinearGradientBrush>
+            </Grid.Background>
+        <Image Source="sky.jpg"
+               Aspect="AspectFill"
+               Grid.RowSpan="5"
+               Grid.ColumnSpan="2"
+               Opacity=".65"/>
 
         <Label
             Grid.Row="0"
             Grid.ColumnSpan="2"
-            BackgroundColor="White"/>
+            BackgroundColor="Transparent"/>
         <Image 
             Grid.Row="0"
             Grid.Column="0"
-            Source="cloudydark.png"/>
+            Source="cloudydark.png"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            Margin="10"/>
         <Image 
             Grid.Row="0"
             Grid.Column="1"
-            Source="windy.png"/>
-        <CollectionView            
+            Source="windy.png"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            Margin="10"/>
+        <Label
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="Center"
+            Text="Today's Weatherforecats"
+            Padding="15"
+            FontFamily="Cour"
+            FontSize="25"/>
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="{Binding Weathers[0].Temperature, StringFormat='{0:} °'}"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            FontFamily="Cour"
+            FontSize="20"/>
+
+        <Label
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            BackgroundColor="LightBlue" 
+            Text="24h Weatherforecast"
+            Padding="15"
+            HorizontalTextAlignment="Center"
+            BackgroundColor="Transparent"
+            FontSize="25"
+            FontFamily="Cour"/>
+        <Label
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Text="Weekly Weatherforecast"
+            Padding="15"
+            HorizontalTextAlignment="Center"
+            BackgroundColor="Transparent"
+            FontSize="25"
+            FontFamily="Cour"/>
+        
+        <CollectionView             
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            BackgroundColor="Transparent" 
             ItemsSource="{Binding Weathers}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="20"></LinearItemsLayout>
@@ -57,17 +110,18 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <CollectionView            
-            Grid.Row="2"
+        <CollectionView 
+            Grid.Row="4"
             Grid.ColumnSpan="2"
-            BackgroundColor="DarkViolet" 
-            ItemsSource="{Binding WeeklyForecasts}">   
+            BackgroundColor="Transparent" 
+            ItemsSource="{Binding WeeklyForecasts}"
+            HorizontalOptions="Center">   
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="20"></LinearItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"></LinearItemsLayout>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Weather">
-                    <StackLayout>
+                    <StackLayout HorizontalOptions="Center">
                         <Image Source="{Binding WeatherImage}"
                        WidthRequest="80"
                        HeightRequest="130"/>

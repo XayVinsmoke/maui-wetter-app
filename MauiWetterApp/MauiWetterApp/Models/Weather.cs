@@ -5,9 +5,10 @@ namespace MauiWetterApp.Models;
 internal class Weather : NotifyBase
 {
     private string _condition;
-    private int _temperature = 0;
+    private double _temperature = 0;
     private DateTime _dateTime = DateTime.Now;
     private ImageSource _weatherImage;
+
 
 
     public string Condition
@@ -24,7 +25,7 @@ internal class Weather : NotifyBase
         }
     }
 
-    public int Temperature
+    public double Temperature
     {
         get => _temperature;
         set

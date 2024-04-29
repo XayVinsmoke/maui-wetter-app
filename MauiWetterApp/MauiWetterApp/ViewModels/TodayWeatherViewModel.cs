@@ -5,15 +5,15 @@ using static Microsoft.Maui.ApplicationModel.Permissions;
 namespace MauiWetterApp.ViewModels;
 
 internal class TodayWeatherViewModel : NotifyBase
-{
+{    
     public ObservableCollection<Weather> Weathers { get; } = new ObservableCollection<Weather>();
-
     public ObservableCollection<Weather> WeeklyForecasts { get; } = new ObservableCollection<Weather>();
 
     public TodayWeatherViewModel()
     {
         Random random = new Random();
         DateTime startDateTime = DateTime.Now;
+        
 
         for (int i = 0; i < 24; i++)
         {
@@ -22,6 +22,7 @@ internal class TodayWeatherViewModel : NotifyBase
             weatherTemp.DateTime = startDateTime.AddHours(i);
 
             Weathers.Add(weatherTemp);
+            
 
         }
 
@@ -33,6 +34,7 @@ internal class TodayWeatherViewModel : NotifyBase
 
             WeeklyForecasts.Add(weeklyTemp);
         }
+      
     }
 
 
