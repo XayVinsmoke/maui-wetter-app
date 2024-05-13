@@ -8,5 +8,7 @@
              x:DataType="viewModels:SettingsViewModel">
     <StackLayout>
         <Label Text="{Binding AppVersion}"/>
+        <Label Text="Light/Dark"/>
+        <Switch x:Name="themeSwitch" IsToggled="False" Toggled="Switch_Toggled"/>
     </StackLayout>
 </ContentPage>
